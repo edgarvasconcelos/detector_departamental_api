@@ -15,7 +15,6 @@ def create_app():
     app = Flask(__name__)
     load_dotenv()  # Carregar o arquivo .env
     flask_env = os.getenv('FLASK_ENV', 'production')
-    
     if flask_env == 'development':
         app.config.from_object(DevelopmentConfig)
     else:
