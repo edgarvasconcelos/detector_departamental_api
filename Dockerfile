@@ -20,7 +20,7 @@ COPY . /app
 # RUN python post_install.py
 
 # Expose the port the app runs on
-EXPOSE 5000
+EXPOSE 10000
 
 # Define environment variable to prevent Python from buffering stdout/stderr
 ENV PYTHONUNBUFFERED=1

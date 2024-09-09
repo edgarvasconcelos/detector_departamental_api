@@ -14,8 +14,6 @@ def create_app():
     """
     app = Flask(__name__)
     load_dotenv()  # Carregar o arquivo .env
-    
-    app = Flask(__name__)
     flask_env = os.getenv('FLASK_ENV', 'production')
     
     if flask_env == 'development':
