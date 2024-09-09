@@ -1,0 +1,35 @@
+# Python cache files
+__pycache__/
+*.pyc
+
+# Virtual environments
+venv/
+env/
+
+# Logs and temporary files
+*.log
+*.tmp
+*.bak
+
+# Ignore the model directory (if you want to handle model files separately)
+# /model/
+
+# Ignore local environment files
+.env
+
+# Ignore Docker-related files (optional, if you don't need them in the image)
+Dockerfile
+docker-compose.yml
+
+# Ignore IDE/editor specific files
+.vscode/
+.idea/
+
+# Ignore any local data directories
+data/
+
+*.pyc
+*.pyo
+*.pyd
+# *.h5
+*.keras

@@ -1,0 +1,67 @@
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+venv/
+env/
+.venv/
+.env/
+
+# Byte-compiled files
+*.py[cod]
+
+# Distribution / Packaging
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# Config files / IDE
+*.vscode/
+*.idea/
+*.sublime-project
+*.sublime-workspace
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Docker files
+docker-compose.override.yml
+
+# Environment variables
+.env
+
+# pytest
+.cache/
+
+# TensorFlow checkpoints
+checkpoint
+checkpoints/
+
+# Pycharm
+.idea/
+
+# Ignore model weights
+# *.h5
+*.hdf5
+*.ckpt
+
+# Ignore datasets
+datasets/
+
+# Ignore large files
+*.tar.gz
+*.zip
+*.tar
+
+# Ignore generated API files
+api/
