@@ -10,10 +10,11 @@ def load_model(model_path='model/modelo_dcnn_91_30.h5', tokenizer_path='model/to
         tokenizer_path (str): Path to the tokenizer file.
 
     Returns:
-        model: Loaded Keras model.
+        interpreter: O interpretador do modelo TensorFlow Lite.
         tokenizer: Loaded tokenizer.
     """
-    model = tf.keras.models.load_model(model_path)
-    model.trainable = False
+    # Carregar o modelo .tflite
+    interpreter = tf.lite.Interpreter(model_path="model/model.tflite")
+    interpreter.allocate_tensors()
     tokenizer = tfds.deprecated.text.SubwordTextEncoder.load_from_file(tokenizer_path)
-    return model, tokenizer
+    return interpreter, tokenizer

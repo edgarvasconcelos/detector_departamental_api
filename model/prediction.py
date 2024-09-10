@@ -2,26 +2,39 @@ import numpy as np
 import tensorflow as tf
 from .preprocessing import clean_text
 
-
-def predict(model, tokenizer, input_text, class_names, max_len):
+def predict(interpreter, tokenizer, input_text, class_names, max_len):
     """
-    Make predictions using the pre-trained model.
+    Faz a predição usando o interpretador TensorFlow Lite e o texto de entrada.
 
     Args:
-        model: The loaded Keras model.
-        tokenizer: The loaded tokenizer.
-        input_text (str): The input text to predict.
-        class_names (list): List of class names.
-        max_len (int): The maximum length for padding/truncation.
+        interpreter: O interpretador TensorFlow Lite.
+        tokenizer: O tokenizador para o texto de entrada.
+        input_text: O texto a ser classificado.
+        class_names: Lista de nomes de classes.
+        max_len: Comprimento máximo da sequência.
 
     Returns:
-        list: List of tuples with class names and their corresponding probabilities.
+        List: Lista com os departamentos e probabilidades.
     """
     text_cleaned = [clean_text(input_text)]  # Assume clean_text is defined in preprocessing.py
     encoded_input = [tokenizer.encode(sentence) for sentence in text_cleaned]
-    padded_input = tf.keras.preprocessing.sequence.pad_sequences(encoded_input, maxlen=max_len, padding='post', truncating='post')
+    input_sequence = tf.keras.preprocessing.sequence.pad_sequences(encoded_input, maxlen=max_len, padding='post', truncating='post')
     
-    predictions = model.predict(padded_input)
-    predicted_classes = np.argpartition(predictions[0], -4)[-4:]
-    predicted_class_names = [(class_names[i], predictions[0][i]) for i in predicted_classes]
-    return sorted(predicted_class_names, key=lambda x: x[1], reverse=True)
+    # Obter os detalhes dos tensores de entrada e saída do interpretador
+    input_details = interpreter.get_input_details()
+    output_details = interpreter.get_output_details()
+
+    # Definir o tensor de entrada
+    interpreter.set_tensor(input_details[0]['index'], np.array(input_sequence, dtype=np.float32))
+
+    # Executar a inferência
+    interpreter.invoke()
+
+    # Obter o tensor de saída
+    output_data = interpreter.get_tensor(output_details[0]['index'])
+
+    # Ordenar e retornar os resultados
+    top_indices = output_data[0].argsort()[-4:][::-1]
+    predictions = [(class_names[i], output_data[0][i]) for i in top_indices]
+
+    return predictions
