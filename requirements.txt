@@ -5,5 +5,6 @@ requests==2.28.1
 tensorflow-datasets==4.9.3
 flask-cors==3.0.10
 spacy>=3.7.0
-pt-core-news-lg @ https://github.com/explosion/spacy-models/releases/download/pt_core_news_lg-3.7.0/pt_core_news_lg-3.7.0.tar.gz
+pt-core-news-md @ https://github.com/explosion/spacy-models/releases/download/pt_core_news_md-3.7.0/pt_core_news_md-3.7.0.tar.gz
+# pt-core-news-lg @ https://github.com/explosion/spacy-models/releases/download/pt_core_news_lg-3.7.0/pt_core_news_lg-3.7.0.tar.gz
 python-dotenv

@@ -2,7 +2,7 @@ import spacy
 import string
 
 # Carregar o modelo spacy uma vez, desativando componentes desnecessários
-nlp = spacy.load('pt_core_news_lg', disable=['ner', 'parser', 'lemmatizer'])
+nlp = spacy.load('pt_core_news_md', disable=['ner', 'parser', 'lemmatizer'])
 stop_words = spacy.lang.pt.STOP_WORDS
 
 def clean_text(text):
